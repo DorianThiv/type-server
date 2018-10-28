@@ -1,0 +1,11 @@
+{
+  "name": "type-server",
+  "version": "1.0.0",
+  "description": "Multiple protocole server",
+  "main": "main.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "THIVOLLE Dorian",
+  "license": "ISC"
+}
