@@ -16,16 +16,19 @@ export class QuartzMqttModule extends QuartzBaseModule {
     public initialize() {
         const configService = new QuartzConfigService();
         this._configuration = configService.getConfigurationModuleByReference(this._reference);
+        console.log(this._configuration);
         if (this._configuration) {
             this._mqtt = Mqtt.connect(this._configuration.protocol + this._configuration.broker);
             this._mqtt.on('connect', () => { this.onConnection() });
             this._mqtt.on('message', (topic, message) => { this.onMessage(topic, message) });
             this._mqtt.on('error', (error) => { this.onError(error) });
+            this._loaded = true;
         }
-        return true;
     }
 
     private onConnection() {
+        console.log('MQTT : on connection');
+        console.log('is connected to : ' + this._configuration.protocol + this._configuration.broker);
         if (this._configuration && this._configuration.topics) {
             const topics = this._configuration.topics;
             topics.forEach(topic => this._mqtt.subscribe(topic));

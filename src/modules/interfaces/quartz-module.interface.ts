@@ -7,10 +7,10 @@
 
 export interface IQuartzModule {
 
-    initialize(): boolean;
+    initialize();
     
-    execute(): boolean;
+    execute();
 
-    uninitialize(): boolean;
+    uninitialize();
 
 }

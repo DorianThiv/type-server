@@ -1,5 +1,4 @@
 import { QuartzModuleLoader } from "./modules/quartz-loader.class";
-import { QuartzConfigService } from "./services/quartz-config.class";
 
 class Quartz {
 
@@ -7,8 +6,8 @@ class Quartz {
 
     public static start() {
         console.log('Start quartz');
-        const config = new QuartzConfigService();
-        // Quartz._loader = new QuartzModuleLoader();
+        Quartz._loader = new QuartzModuleLoader();
+        Quartz._loader.initialize();
         return 0;
     }
 

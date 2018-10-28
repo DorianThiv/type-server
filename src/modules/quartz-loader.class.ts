@@ -14,15 +14,15 @@ export class QuartzModuleLoader implements IQuartzModule {
     }
     
     public initialize() {
-        return true;
+        Object.keys(this._modules).forEach((ref: string) => this._modules[ref].initialize());
     }
     
     public execute() {
-        return true;
+        
     }
     
     public uninitialize() {
-        return true;
+        
     }
 
 }

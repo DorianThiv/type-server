@@ -4,6 +4,7 @@ import { IQuartzModule } from "../interfaces/quartz-module.interface";
 export class QuartzBaseModule implements IQuartzModule {
     
     protected _reference: string;
+    protected _loaded = false;
 
     constructor(refernce: string) {
         this._reference = refernce;
@@ -13,17 +14,17 @@ export class QuartzBaseModule implements IQuartzModule {
 
     public initialize() {
         console.error('Method not implemented.');
-        return true;
+        
     }
 
     public execute() {
         console.error('Method not implemented.');
-        return true;
+        
     }
 
     public uninitialize() {
         console.error('Method not implemented.');
-        return true;
+        
     }
 
 }
