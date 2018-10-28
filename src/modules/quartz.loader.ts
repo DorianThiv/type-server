@@ -1,6 +1,6 @@
 
 import { IQuartzModule } from "./interfaces/quartz-module.interface";
-import { QuartzMqttModule } from "./module-mqtt/quartz-mqtt-module.class";
+import { QuartzMqttModule } from "./module-mqtt/quartz-mqtt.module";
 
 export class QuartzModuleLoader implements IQuartzModule {
 
@@ -18,11 +18,11 @@ export class QuartzModuleLoader implements IQuartzModule {
     }
     
     public execute() {
-        
+        Object.keys(this._modules).forEach((ref: string) => this._modules[ref].execute());
     }
     
     public uninitialize() {
-        
+        Object.keys(this._modules).forEach((ref: string) => this._modules[ref].uninitialize());
     }
 
 }

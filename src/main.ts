@@ -1,4 +1,4 @@
-import { QuartzModuleLoader } from "./modules/quartz-loader.class";
+import { QuartzModuleLoader } from "./modules/quartz.loader";
 
 class Quartz {
 

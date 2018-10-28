@@ -9,7 +9,11 @@ export class QuartzConfigService {
         let module;
         if (configuration && configuration.modules) {
             module = configuration.modules.filter(m => m.name === reference);
-            return module;
+            if (module && module.length === 1) {
+                return module[0];
+            } else {
+                console.error(`Cannot find module configuration : {${reference}}`);
+            }
         }
     }
 
