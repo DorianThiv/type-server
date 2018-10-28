@@ -14,9 +14,11 @@ export class QuartzMqttModule extends QuartzBaseModule {
     }
 
     public initialize() {
-        const configService = new QuartzConfigService();
+        const configService = QuartzConfigService.getInstance();
         this._configuration = configService.getConfigurationModuleByReference(this._reference);
-        console.log(this._configuration);
+    }
+
+    public async execute() {
         if (this._configuration) {
             this._mqtt = Mqtt.connect(this._configuration.protocol + this._configuration.broker);
             this._mqtt.on('connect', () => { this.onConnection() });
@@ -29,7 +31,6 @@ export class QuartzMqttModule extends QuartzBaseModule {
     private onConnection() {
         console.log('MQTT : on connection');
         console.log('is connected to : ' + this._configuration.protocol + this._configuration.broker);
-        console.log(this._configuration);
         if (this._configuration && this._configuration.topics) {
             const topics = this._configuration.topics;
             topics.forEach(topic => this._mqtt.subscribe(topic));

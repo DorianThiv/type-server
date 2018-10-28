@@ -9,7 +9,6 @@ export class QuartzBaseModule implements IQuartzModule {
     constructor(refernce: string) {
         this._reference = refernce;
         console.log('Instantiate module : ' + this._reference);
-        
     }
 
     public initialize() {
@@ -17,7 +16,7 @@ export class QuartzBaseModule implements IQuartzModule {
         
     }
 
-    public execute() {
+    public async execute() {
         console.error('Method not implemented.');
         
     }

@@ -3,7 +3,16 @@ import configuration from '../assets/quartz.config.json';
 
 export class QuartzConfigService {
 
-    constructor() { }
+    private static _instance: QuartzConfigService;
+
+    private constructor() { }
+
+    public static getInstance() {
+        if (QuartzConfigService._instance) {
+            return QuartzConfigService._instance;
+        }
+        return new QuartzConfigService();
+    }
 
     public getConfigurationModuleByReference(reference: string) {
         let module;

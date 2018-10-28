@@ -5,9 +5,10 @@ var Quartz = /** @class */ (function () {
     function Quartz() {
     }
     Quartz.start = function () {
-        console.log('Start quartz');
-        Quartz._loader = new quartz_loader_1.QuartzModuleLoader();
+        console.log('Server quartz start');
+        Quartz._loader = quartz_loader_1.QuartzModuleLoader.getInstance();
         Quartz._loader.initialize();
+        Quartz._loader.execute();
         return 0;
     };
     return Quartz;

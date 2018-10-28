@@ -5,9 +5,10 @@ class Quartz {
     private static _loader: QuartzModuleLoader;
 
     public static start() {
-        console.log('Start quartz');
-        Quartz._loader = new QuartzModuleLoader();
+        console.log('Server quartz start');
+        Quartz._loader = QuartzModuleLoader.getInstance();
         Quartz._loader.initialize();
+        Quartz._loader.execute();
         return 0;
     }
 
