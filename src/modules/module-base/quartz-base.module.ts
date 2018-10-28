@@ -1,6 +1,6 @@
 
 import { IQuartzModule } from "../interfaces/quartz-module.interface";
-import { QuartzBaseService } from "./quartz-mqtt.service";
+import { QuartzBaseService } from "./quartz-base.service";
 import { QuartzBaseController } from "./quartz-base.controller";
 import { QuartzBaseProvider } from "./quartz-base.provider";
 import { QuartzConfigService } from "../../services/quartz-config.service";

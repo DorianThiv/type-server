@@ -4,7 +4,7 @@ import { IWebServiceController } from "../interfaces/quartz-web-service.interfac
 import { QuartzModuleLoader } from '../../quartz.loader';
 
 
-export class WebServiceScrutanizer implements IWebServiceController {
+export class WebServiceScrutanizer {
 
     public router: Router;
 
@@ -14,16 +14,18 @@ export class WebServiceScrutanizer implements IWebServiceController {
         this.router = router;
         const modules = QuartzModuleLoader.getModules();
         if (modules) {
-            console.log(modules);
-            const modulesWhichHaveController = Object.keys(modules).filter((ref: string) => modules[ref].hasController());
-            console.log(modulesWhichHaveController);
-            // this._controllers = modulesWhichHaveController.map(m => m)
+            const refs = Object.keys(modules).filter((ref: string) => modules[ref].hasController());
+            this._controllers = refs.map(r => modules[r].controller);
         }
+        this._controllers.forEach(c => c.setRouter(this.router));
     }
 
     public scrutanize() {
-        // this.controllers.map(c => c.scrutanize());
-        console.log("Scrut...");
+        try {
+            this._controllers.forEach(c => c.scrutanize());
+        } catch (error) {
+            console.error('Quartz web service [error] [scrutanize()] : ' + error);
+        }
     }
 
 }

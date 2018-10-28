@@ -1,4 +1,4 @@
-import { QuartzBaseService } from "../module-base/quartz-mqtt.service";
+import { QuartzBaseService } from "../module-base/quartz-base.service";
 
 export class QuartzWebServiceService extends QuartzBaseService {
 

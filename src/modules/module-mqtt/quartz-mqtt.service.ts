@@ -1,4 +1,4 @@
-import { QuartzBaseService } from "../module-base/quartz-mqtt.service";
+import { QuartzBaseService } from "../module-base/quartz-base.service";
 import { QuartzModuleLoader } from "../quartz.loader";
 import { WebServiceActionType } from "../module-web-service/enums/web-service-action.enum";
 import { QuartzWebServiceModule } from "../module-web-service/quartz-web-service.module";

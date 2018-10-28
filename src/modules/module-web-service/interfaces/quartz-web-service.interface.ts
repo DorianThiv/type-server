@@ -1,3 +1,4 @@
+import { Router } from "express";
 
 export interface IWebServiceConfiguration {
     name: string;
@@ -6,4 +7,5 @@ export interface IWebServiceConfiguration {
 
 export interface IWebServiceController {
     scrutanize(...args: any[]);
+    setRouter(router: Router);
 }
