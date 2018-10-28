@@ -19,9 +19,9 @@ export class WebService {
 
 
     private routes(): void {
+        console.log('Scrutabize ...');
         // this.urlResolver = UrlResolverService.getInstance(this.express.Router());    
         // this.urlResolver.scrutanize();
-
         // this.express.use('/', this.urlResolver.router);
     }
 

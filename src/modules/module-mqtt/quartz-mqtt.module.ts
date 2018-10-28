@@ -29,8 +29,8 @@ export class QuartzMqttModule extends QuartzBaseModule {
     }
 
     private onConnection() {
-        console.log('MQTT : on connection');
-        console.log('is connected to : ' + this._configuration.protocol + this._configuration.broker);
+        // console.log('MQTT : on connection');
+        console.log('Mqtt client connected to : ' + this._configuration.protocol + this._configuration.broker);
         if (this._configuration && this._configuration.topics) {
             const topics = this._configuration.topics;
             topics.forEach(topic => this._mqtt.subscribe(topic));
@@ -38,13 +38,13 @@ export class QuartzMqttModule extends QuartzBaseModule {
     }
 
     private onMessage(topic: any, message: any) {
-        console.log('MQTT : on message');
-        console.log(message.toString());
+        // console.log('MQTT : on message');
+        // console.log(message.toString());
     }
 
     private onError(error: Error) {
-        console.log('MQTT : on error');
-        console.log(error);
+        // console.log('MQTT : on error');
+        // console.log(error);
     }
 
 }
