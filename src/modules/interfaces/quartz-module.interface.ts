@@ -11,6 +11,8 @@ export interface IQuartzModule {
     
     execute();
 
+    action(...args: any[]);
+
     uninitialize();
 
 }

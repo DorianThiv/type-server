@@ -1,10 +1,13 @@
 
 import express from 'express';
 import * as bodyParser from 'body-parser';
+import { WebServiceScrutanizer } from './WebServiceScrutanizer.class';
 
 export class WebService {
 
     public express: any;
+    
+    private _scrutanizer: WebServiceScrutanizer;
 
     constructor() {
         this.express = express();
@@ -19,12 +22,9 @@ export class WebService {
 
 
     private routes(): void {
-        console.log('Scrutabize ...');
-        // this.urlResolver = UrlResolverService.getInstance(this.express.Router());    
-        // this.urlResolver.scrutanize();
-        // this.express.use('/', this.urlResolver.router);
+        this._scrutanizer = new WebServiceScrutanizer(express.Router());
+        this._scrutanizer.scrutanize();
+        this.express.use('/', this._scrutanizer.router);
     }
 
 }
-
-export default new WebService().express;

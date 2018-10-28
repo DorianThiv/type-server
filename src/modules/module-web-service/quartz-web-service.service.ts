@@ -1,6 +1,6 @@
+import { QuartzBaseService } from "../module-base/quartz-mqtt.service";
 
-
-export class QuartzWebServiceService {
+export class QuartzWebServiceService extends QuartzBaseService {
 
     public normalizePort(val: number|string): number|string|boolean {
         let port: number = (typeof val === 'string') ? parseInt(val, 10) : val;

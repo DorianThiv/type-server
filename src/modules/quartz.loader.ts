@@ -2,39 +2,33 @@
 import { IQuartzModule } from "./interfaces/quartz-module.interface";
 import { QuartzMqttModule } from "./module-mqtt/quartz-mqtt.module";
 import { QuartzWebServiceModule } from "./module-web-service/quartz-web-service.module";
+import { QuartzBaseModule } from "./module-base/quartz-base.module";
 
-export class QuartzModuleLoader implements IQuartzModule {
+export class QuartzModuleLoader  {
 
-    private static _instance: QuartzModuleLoader;
-
-    private _modules: { [reference: string]: IQuartzModule };
-
-    private constructor() { }
-
-    public static getInstance() {
-        if (QuartzModuleLoader._instance) {
-            return QuartzModuleLoader._instance;
-        }
-        return new QuartzModuleLoader();
+    private static _modules: { [reference: string]: QuartzBaseModule };
+    
+    public static initialize() {
+        QuartzModuleLoader._modules = {};
+        QuartzModuleLoader._modules['mqtt'] = new QuartzMqttModule();
+        QuartzModuleLoader._modules['webservice'] = new QuartzWebServiceModule();
+        Object.keys(QuartzModuleLoader._modules).forEach((ref: string) => QuartzModuleLoader._modules[ref].initialize());
     }
     
-    public initialize() {
-        this._modules = {};
-        this._modules['mqtt'] = new QuartzMqttModule();
-        this._modules['webservice'] = new QuartzWebServiceModule();
-        Object.keys(this._modules).forEach((ref: string) => this._modules[ref].initialize());
+    public static execute() {
+        Object.keys(QuartzModuleLoader._modules).forEach((ref: string) => QuartzModuleLoader._modules[ref].execute());
     }
     
-    public execute() {
-        Object.keys(this._modules).forEach((ref: string) => this._modules[ref].execute());
-    }
-    
-    public uninitialize() {
-        Object.keys(this._modules).forEach((ref: string) => this._modules[ref].uninitialize());
+    public static uninitialize() {
+        Object.keys(QuartzModuleLoader._modules).forEach((ref: string) => QuartzModuleLoader._modules[ref].uninitialize());
     }
 
     public static getModule(reference: string) {
-        return this._instance._modules[reference];
+        return QuartzModuleLoader._modules[reference];
+    }
+
+    public static getModules() {
+        return QuartzModuleLoader._modules;
     }
 
 }
