@@ -1,9 +1,9 @@
 
-import { IServerModule } from "../interfaces/server-module.interface";
+import { IQuartzModule } from "../interfaces/quartz-module.interface";
 
-export class ServerBaseModule implements IServerModule {
+export class QuartzBaseModule implements IQuartzModule {
     
-    private _reference: string;
+    protected _reference: string;
 
     constructor(refernce: string) {
         this._reference = refernce;

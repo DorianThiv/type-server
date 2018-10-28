@@ -1,0 +1,9 @@
+
+{
+    "modules": [{
+        "name": "mqtt",
+        "protocol": "mqtt://",
+        "broker": "192.168.0.22",
+        "topics": ["arduino/temp"]
+    }]
+}

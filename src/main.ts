@@ -1,15 +1,17 @@
-import { ServerModuleLoader } from "./modules/server-loader.class";
+import { QuartzModuleLoader } from "./modules/quartz-loader.class";
+import { QuartzConfigService } from "./services/quartz-config.class";
 
-class Server {
+class Quartz {
 
-    private static _loader: ServerModuleLoader;
+    private static _loader: QuartzModuleLoader;
 
     public static start() {
-        console.log('Start server');
-        Server._loader = new ServerModuleLoader(1);
+        console.log('Start quartz');
+        const config = new QuartzConfigService();
+        // Quartz._loader = new QuartzModuleLoader();
         return 0;
     }
 
 }
 
-Server.start();
+Quartz.start();

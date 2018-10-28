@@ -1,11 +1,11 @@
 
 /**
- * Server Modules Interface
+ * Quartz Modules Interface
  * ------------------------
  * Interface all modules to be loaded more efficiently
  */
 
-export interface IServerModule {
+export interface IQuartzModule {
 
     initialize(): boolean;
     

@@ -1,15 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var server_loader_class_1 = require("./modules/server-loader.class");
-var Server = /** @class */ (function () {
-    function Server() {
+var quartz_config_class_1 = require("./services/quartz-config.class");
+var Quartz = /** @class */ (function () {
+    function Quartz() {
     }
-    Server.start = function () {
-        console.log('Start server');
-        Server._loader = new server_loader_class_1.ServerModuleLoader(1);
+    Quartz.start = function () {
+        console.log('Start quartz');
+        var config = new quartz_config_class_1.QuartzConfigService();
+        // Quartz._loader = new QuartzModuleLoader();
         return 0;
     };
-    return Server;
+    return Quartz;
 }());
-Server.start();
+Quartz.start();
 //# sourceMappingURL=main.js.map

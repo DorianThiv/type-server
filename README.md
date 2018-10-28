@@ -1,2 +1,2 @@
-# type-server
-Typescript server
+# type-quartz
+Typescript quartz

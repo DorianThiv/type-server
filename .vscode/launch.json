@@ -7,7 +7,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch server",
+            "name": "Launch quartz",
             "program": "${workspaceFolder}/dist/main.js",
             "preLaunchTask": "compile",
         }, 
