@@ -20,7 +20,6 @@ var ServerMqttModule = /** @class */ (function (_super) {
         return _super.call(this, 'mqtt') || this;
     }
     ServerMqttModule.prototype.initialize = function () {
-        console.log('Module mqtt initialized');
         return true;
     };
     return ServerMqttModule;

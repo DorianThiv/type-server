@@ -7,5 +7,10 @@
     "test": "test"
   },
   "author": "THIVOLLE Dorian",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "mqtt": "^2.17.0",
+    "websocket": "^1.0.26"
+  }
+
 }

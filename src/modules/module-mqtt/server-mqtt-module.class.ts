@@ -7,7 +7,6 @@ export class ServerMqttModule extends ServerBaseModule {
     }
 
     public initialize() {
-        console.log('Module mqtt initialized');
         return true;
     }
 

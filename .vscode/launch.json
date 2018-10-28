@@ -10,6 +10,6 @@
             "name": "Launch server",
             "program": "${workspaceFolder}/dist/main.js",
             "preLaunchTask": "compile",
-        }
+        }, 
     ]
 }
