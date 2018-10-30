@@ -8,8 +8,8 @@ export class QuartzFileReaderService {
     }
 
     public readSync(path: string) {
-        const content = fs.readFileSync('../' + path);
-        console.log(content);
+        const content = fs.readFileSync(__dirname + '\\..\\' + path);
+        console.log(JSON.parse(content.toString())['modules']);
     }
 
 }
