@@ -14,7 +14,8 @@ export class QuartzMqttProvider extends QuartzBaseProvider {
 
     public execute() {
         if (this._module && this._module.configuration) {
-            this._mqtt = Mqtt.connect(`${this._module.configuration.protocol}://${this._module.configuration.broker}`);
+            const port = this._module.configuration.port ? this._module.configuration.port : 1883;
+            this._mqtt = Mqtt.connect(`${this._module.configuration.protocol}://${this._module.configuration.broker}`, { port: port });
             this._mqtt.on('connect', () => { this.onConnection() });
             this._mqtt.on('message', (topic, message) => { this.onMessage(topic, message) });
             this._mqtt.on('packetsend', (packet: Mqtt.Packet) => { this.onPacket(packet) });
@@ -24,7 +25,7 @@ export class QuartzMqttProvider extends QuartzBaseProvider {
     }
 
     private onConnection() {
-        console.log('Quartz mqtt client connected to : ' + `${this._module.configuration.protocol}://${this._module.configuration.broker}`);
+        console.log('Quartz mqtt client connected to : ' + `${this._module.configuration.protocol}://${this._module.configuration.broker}:${this._module.configuration.port}`);
         if (this._module.configuration && this._module.configuration.topics) {
             const topics = this._module.configuration.topics;
             topics.forEach(topic => this._mqtt.subscribe(topic));
@@ -33,13 +34,13 @@ export class QuartzMqttProvider extends QuartzBaseProvider {
 
     private onMessage(topic: any, message: any) {
         // console.log('MQTT : on message');
-        // console.log(message.toString());
+        console.log(message.toString());
         this._module.subscriber.notify('webservice', QuartzIOType.Input, message);
         // (<QuartzMqttService>this._module.service).sendMessage(message);
     }
 
     private onPacket(packet: Mqtt.Packet) {
-        console.log(packet);
+        // console.log(packet);
     }
 
     private onError(error: Error) {
