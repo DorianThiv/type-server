@@ -5,6 +5,7 @@ import { IMqttConfiguration } from './interfaces/quartz-mqtt.interface';
 import { QuartzMqttService } from './quartz-mqtt.service';
 import { QuartzMqttController } from './quartz-mqtt.controller';
 import { QuartzMqttProvider } from './quartz-mqtt.provider';
+import { QuartzMqttSubscriber } from "./quartz-mqtt.subscriber";
 
 export class QuartzMqttModule extends QuartzBaseModule {
 
@@ -13,6 +14,7 @@ export class QuartzMqttModule extends QuartzBaseModule {
     protected _service: QuartzMqttService;
     protected _controller: QuartzMqttController;
     protected _provider: QuartzMqttProvider;
+    protected _subscriber: QuartzMqttSubscriber;
 
     constructor() {
         super('mqtt');
@@ -22,6 +24,7 @@ export class QuartzMqttModule extends QuartzBaseModule {
         this._controller = new QuartzMqttController(this);
         this._provider = new QuartzMqttProvider(this);
         this._service = new QuartzMqttService();
+        this._subscriber = new QuartzMqttSubscriber(this);
     }
 
     public async execute() {

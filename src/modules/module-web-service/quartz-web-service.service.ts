@@ -1,4 +1,6 @@
 import { QuartzBaseService } from "../module-base/quartz-base.service";
+import { QuartzModuleLoader } from "../quartz.loader";
+import { QuartzIOType } from "../../enums/quartz-io.enum";
 
 export class QuartzWebServiceService extends QuartzBaseService {
 
@@ -7,6 +9,11 @@ export class QuartzWebServiceService extends QuartzBaseService {
         if (isNaN(port)) return val;
         else if (port >= 0) return port;
         else return false;
+    }
+
+    public subscribeTo(ref: string, action: QuartzIOType, method: Function) {
+        const mqttSubscriber = QuartzModuleLoader.getModuleSubscriber('mqtt');
+        mqttSubscriber.subscribe(ref, { action: action, method: method() });
     }
 
 }

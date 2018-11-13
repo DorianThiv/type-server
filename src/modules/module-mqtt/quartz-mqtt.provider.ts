@@ -3,6 +3,7 @@ import { QuartzMqttModule } from "./quartz-mqtt.module";
 import { MqttClient } from "mqtt";
 import { QuartzBaseProvider } from "../module-base/quartz-base.provider";
 import { QuartzMqttService } from "./quartz-mqtt.service";
+import { QuartzIOType } from '../../enums/quartz-io.enum';
 
 export class QuartzMqttProvider extends QuartzBaseProvider {
 
@@ -33,7 +34,8 @@ export class QuartzMqttProvider extends QuartzBaseProvider {
     private onMessage(topic: any, message: any) {
         // console.log('MQTT : on message');
         // console.log(message.toString());
-        (<QuartzMqttService>this._module.service).sendMessage(message);
+        this._module.subscriber.notify('webservice', QuartzIOType.Input, message);
+        // (<QuartzMqttService>this._module.service).sendMessage(message);
     }
 
     private onError(error: Error) {

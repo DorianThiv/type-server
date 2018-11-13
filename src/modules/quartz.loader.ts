@@ -31,4 +31,8 @@ export class QuartzModuleLoader  {
         return QuartzModuleLoader._modules;
     }
 
+    public static getModuleSubscriber(reference: string) {
+        return QuartzModuleLoader._modules[reference] ? QuartzModuleLoader._modules[reference].subscriber : null;
+    }
+
 }

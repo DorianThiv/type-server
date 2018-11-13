@@ -7,6 +7,7 @@ import { QuartzWebServiceSimpleProvider } from "./quartz-web-service-simple.prov
 import { QuartzWebServiceSocketProvider } from "./quartz-web-service-socket.provider";
 import { WebServiceActionType } from "./enums/web-service-action.enum";
 import { WebServiceConnectionType } from "./enums/web-service-connection.enum";
+import { QuartzIOType } from "../../enums/quartz-io.enum";
 
 export class QuartzWebServiceModule extends QuartzBaseModule {
 
@@ -39,12 +40,17 @@ export class QuartzWebServiceModule extends QuartzBaseModule {
     }
 
     public async execute() {
+        if(this._subscriber) {
+            this._subscriber.subscribeAll(QuartzIOType.Input, this.action);
+        }
         if (this._provider) {
             this._provider.execute();
         }
     }
 
     public action(action: WebServiceActionType, data: any) {
+        console.log(action);
+        console.log(data);
         if (this._provider) {
             this._provider.action(action, data);
         }

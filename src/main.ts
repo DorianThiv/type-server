@@ -6,6 +6,7 @@ class Quartz {
         // NetworkHelper.ip();
         // QuartzModuleLoader.initialize();
         // QuartzModuleLoader.execute();
+        console.log(typeof(Quartz.start));
         return 0;
     }
 
