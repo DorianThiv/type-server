@@ -6,7 +6,7 @@ import { QuartzBaseModule } from "./module-base/quartz-base.module";
 
 export class QuartzModuleLoader  {
 
-    private static _modules: Map<string, QuartzBaseModule>;;
+    private static _modules: Map<string, QuartzBaseModule>;
     
     public static initialize() {
         QuartzModuleLoader._modules = new Map<string, QuartzBaseModule>();
