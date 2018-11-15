@@ -1,4 +1,4 @@
-# Quartz serevr
+# Quartz server
 Typescript quartz
 
 ## Get started
