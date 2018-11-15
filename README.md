@@ -1,4 +1,4 @@
-# type-quartz
+# Quartz serevr
 Typescript quartz
 
 ## Get started
