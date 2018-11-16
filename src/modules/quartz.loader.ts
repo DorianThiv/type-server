@@ -6,33 +6,32 @@ import { QuartzBaseModule } from "./module-base/quartz-base.module";
 
 export class QuartzModuleLoader  {
 
-    private static _modules: Map<string, QuartzBaseModule>;
-    
+    private static _modules: { [reference: string]: QuartzBaseModule };
+   
     public static initialize() {
-        QuartzModuleLoader._modules = new Map<string, QuartzBaseModule>();
+        QuartzModuleLoader._modules = {};
         QuartzModuleLoader._modules['mqtt'] = new QuartzMqttModule();
         QuartzModuleLoader._modules['webservice'] = new QuartzWebServiceModule();
-        QuartzModuleLoader._modules.forEach((module: QuartzBaseModule) => { module.initialize() });
+        Object.keys(QuartzModuleLoader._modules).forEach((ref: string) => QuartzModuleLoader._modules[ref].initialize());
     }
     
     public static execute() {
-        QuartzModuleLoader._modules.forEach((module: QuartzBaseModule) => { module.execute() });
+        Object.keys(QuartzModuleLoader._modules).forEach((ref: string) => QuartzModuleLoader._modules[ref].execute());
     }
     
     public static uninitialize() {
-        QuartzModuleLoader._modules.forEach((module: QuartzBaseModule) => { module.uninitialize() });
+        Object.keys(QuartzModuleLoader._modules).forEach((ref: string) => QuartzModuleLoader._modules[ref].uninitialize());
     }
-
+    
     public static getModule(reference: string) {
-        return QuartzModuleLoader._modules.get(reference);
+        return QuartzModuleLoader._modules[reference];
     }
-
+    
     public static getModules() {
         return QuartzModuleLoader._modules;
     }
-
+    
     public static getModuleSubscriber(reference: string) {
-        return QuartzModuleLoader._modules.get(reference) ? QuartzModuleLoader._modules.get(reference).subscriber : null;
+        return QuartzModuleLoader._modules[reference] ? QuartzModuleLoader._modules[reference].subscriber : null;
     }
-
 }
