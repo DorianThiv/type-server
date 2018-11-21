@@ -1,0 +1,16 @@
+
+Get started with Mysql server in command line :
+
+* Install Mysql : sudo apt-get install mysql-server
+* Allow remote access : sudo ufw allow mysql
+* Start mysql service : systemctl start mysql
+* Launch at reboot (optionnal) : systemctl enable mysql
+* Mysql shell : /usr/bin/mysql -u root -p (base password : root)
+
+Database :
+
+* create database dbquartz
+* show databases
+* Add user : INSERT INTO mysql.user (User, Host, authentication_string, ssl_cipher, x509_issuer, x509_subject) VALUES ('quartzuser', 'localhost', PASSWORD('quartzuser'), '', '', '');
+* Add privileges to user : GRANT ALL PRIVILEGES ON dbquartz.* TO quartzuser@localhost;
+* SHOW GRANTS FOR 'quartzuser'@'localhost';
