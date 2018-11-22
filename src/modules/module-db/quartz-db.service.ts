@@ -1,5 +1,7 @@
 import { QuartzBaseService } from "../module-base/quartz-base.service";
 
-export class QuartzBddService extends QuartzBaseService {
+export class QuartzDbService extends QuartzBaseService {
+
+
 
 }
