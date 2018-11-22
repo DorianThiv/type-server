@@ -3,6 +3,7 @@ import { IQuartzModule } from "./interfaces/quartz-module.interface";
 import { QuartzMqttModule } from "./module-mqtt/quartz-mqtt.module";
 import { QuartzWebServiceModule } from "./module-web-service/quartz-web-service.module";
 import { QuartzBaseModule } from "./module-base/quartz-base.module";
+import { QuartzDbModule } from "./module-db/quartz-db.module";
 
 export class QuartzModuleLoader  {
 
@@ -12,6 +13,7 @@ export class QuartzModuleLoader  {
         QuartzModuleLoader._modules = {};
         QuartzModuleLoader._modules['mqtt'] = new QuartzMqttModule();
         QuartzModuleLoader._modules['webservice'] = new QuartzWebServiceModule();
+        QuartzModuleLoader._modules['db'] = new QuartzDbModule();
         Object.keys(QuartzModuleLoader._modules).forEach((ref: string) => QuartzModuleLoader._modules[ref].initialize());
     }
     

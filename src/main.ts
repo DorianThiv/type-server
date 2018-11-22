@@ -1,13 +1,22 @@
 import { QuartzModuleLoader } from "./modules/quartz.loader";
-import { QuartzConfigService } from "./services/quartz-config.service";
 
 class Quartz {
 
     public static async start() {
-        // console.log('Server quartz start');
-        // QuartzModuleLoader.initialize();
-        // QuartzModuleLoader.execute();
+        Quartz.handlers();
+        console.log('Server quartz start');
+        QuartzModuleLoader.initialize();
+        QuartzModuleLoader.execute();
         return 0;
+    }
+    
+    private static handlers() {
+        process.on('SIGINT', () => this.onSigint());
+    }
+
+    private static onSigint() {
+        console.log("Interrupt Quartz Server");
+        process.exit();
     }
 
 }

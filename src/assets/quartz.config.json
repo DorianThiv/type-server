@@ -9,5 +9,10 @@
     }, {
         "name": "webservice",
         "protocol": "ws"
+    }, {
+        "name": "db",
+        "host": "localhost",
+        "user": "quartzuser",
+        "password": "quartzuser"
     }]
 }

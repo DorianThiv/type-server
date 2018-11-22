@@ -18,13 +18,16 @@ export class QuartzDbModule extends QuartzBaseModule {
 
     constructor() {
         super('db');
-    }
-
-    public initialize() {
         this._controller = new QuartzDbController(this);
         this._provider = new QuartzDbProvider(this);
         this._service = new QuartzDbService();
         this._subscriber = new QuartzDbSubscriber(this);
+    }
+
+    public initialize() {
+        if (this._provider) {
+            this._provider.initialize();
+        }
     }
 
     public async execute() {

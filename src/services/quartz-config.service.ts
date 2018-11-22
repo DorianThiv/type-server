@@ -1,8 +1,6 @@
 
 import configuration from '../assets/quartz.config.json';
-import { Injectable } from './quartz-injector.service.js';
 
-@Injectable
 export class QuartzConfigService {
 
     private static _instance: QuartzConfigService;
