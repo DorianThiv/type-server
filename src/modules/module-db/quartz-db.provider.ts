@@ -29,7 +29,10 @@ export class QuartzDbProvider extends QuartzBaseProvider {
     }
 
     public onConnection(error: Mysql.MysqlError) {
-        if (error) { throw error; }
+        if (error) {
+            console.error(`QuartzDbProvider [onConnection()] : ${error}`);
+            return;
+        }
         console.log('Mysql connection initialized.');
     }
 
