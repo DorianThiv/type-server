@@ -11,9 +11,4 @@ export class QuartzWebServiceService extends QuartzBaseService {
         else return false;
     }
 
-    public subscribeTo(ref: string, action: QuartzIOType, method: Function) {
-        const mqttSubscriber = QuartzModuleLoader.getModuleSubscriber('mqtt');
-        mqttSubscriber.subscribe(ref, { action: action, method: method() });
-    }
-
 }

@@ -2,6 +2,6 @@
 import { QuartzIOType } from "../../enums/quartz-io.enum";
 
 export interface IQuartzSubscription {
-    action: QuartzIOType,
+    ioType: QuartzIOType,
     method(action: QuartzIOType, data: any): Function
 }

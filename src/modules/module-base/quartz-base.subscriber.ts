@@ -26,27 +26,32 @@ export class QuartzBaseSubscriber {
         }
     }
 
-    public subscribeTo(ref: string, action: QuartzIOType, method: Function) {
+    public subscribeTo(ref: string, ioType: QuartzIOType, method: Function) {
         const subscriber = QuartzModuleLoader.getModuleSubscriber(ref);
         if (subscriber) {
             console.log(subscriber);
         }
     }
 
-    public subscribeAll(action: QuartzIOType, method: Function) {
+    /**
+     * Subscribe to all modules specified in `_modulesToSubscribe` array.
+     * @param {QuartzIOType} ioType IO type (Input | Output)
+     * @param {Function} method
+     */
+    public subscribeAll(ioType: QuartzIOType, method: Function) {
         this._modulesToSubscribe.forEach(mod => {
             const subscriber = QuartzModuleLoader.getModuleSubscriber(mod);
             if (subscriber) {
-                subscriber.subscribe(this._module.reference, { action: action, method: method() });
+                subscriber.subscribe(this._module.reference, { ioType: ioType, method: method() });
             }
         });
     }
 
-    public notify(ref: string, action: QuartzIOType, data: any) {
+    public notify(ref: string, ioType: QuartzIOType, data: any) {
         if (this.subscriptions) {
             const subs = this.subscriptions.get(ref);
             if (subs) {
-                subs.forEach(sub => { if (sub.action === action) { sub.method(sub.action, data); } });
+                subs.forEach(sub => { if (sub.ioType === ioType) { sub.method(sub.ioType, data); } });
             }
         }
     }
@@ -55,7 +60,7 @@ export class QuartzBaseSubscriber {
         if (this.subscriptions) {
             const subs = this.subscriptions.get(ref);
             if (subs) {
-                subs.forEach(sub => sub.method(sub.action, data));
+                subs.forEach(sub => sub.method(sub.ioType, data));
             }
         }
     }
