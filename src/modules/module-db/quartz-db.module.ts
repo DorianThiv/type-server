@@ -5,6 +5,7 @@ import { QuartzDbService } from './quartz-db.service';
 import { QuartzDbController } from './quartz-db.controller';
 import { QuartzDbProvider } from './quartz-db.provider';
 import { QuartzDbSubscriber } from "./quartz-db.subscriber";
+import { QuartzIOType } from "../../enums/quartz-io.enum";
 import { IDbConfiguration } from "./interfaces/quartz-db.interface";
 
 export class QuartzDbModule extends QuartzBaseModule {
@@ -25,6 +26,9 @@ export class QuartzDbModule extends QuartzBaseModule {
     }
 
     public initialize() {
+        if(this._subscriber) {
+            this._subscriber.subscribeAll(QuartzIOType.Input, this.action);
+        }
         if (this._provider) {
             this._provider.initialize();
         }
